@@ -12,7 +12,7 @@ export const FreyaLanguage = LRLanguage.define({
         Application: foldInside
       }),
       styleTags({
-        Identifier: t.variableName,
+        keyword: t.keyword,
         String: t.string,
         LineComment: t.lineComment,
         "{ }": t.paren
