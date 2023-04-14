@@ -6,25 +6,24 @@ export const FreyaLanguage = LRLanguage.define({
   parser: parser.configure({
     props: [
       indentNodeProp.add({
-        Application: delimitedIndent({closing: ")", align: false})
+        Application: delimitedIndent({closing: "}", align: false})
       }),
       foldNodeProp.add({
         Application: foldInside
       }),
       styleTags({
         Identifier: t.variableName,
-        Boolean: t.bool,
         String: t.string,
         LineComment: t.lineComment,
-        "( )": t.paren
+        "{ }": t.paren
       })
     ]
   }),
   languageData: {
-    commentTokens: {line: ";"}
+    commentTokens: {line: "#"}
   }
 })
 
-export function Index() {
+export function Freya() {
   return new LanguageSupport(FreyaLanguage)
 }
