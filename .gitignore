@@ -12,10 +12,13 @@ dist
 dist-ssr
 *.local
 
-# Editor directories and files
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
 .vscode/*
 !.vscode/extensions.json
-**/.idea/**
 .DS_Store
 *.suo
 *.ntvs*
