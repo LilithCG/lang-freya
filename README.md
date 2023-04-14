@@ -1,1 +1,1 @@
-# Freya Language Module
+# Index Language Module

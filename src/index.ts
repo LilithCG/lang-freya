@@ -25,6 +25,6 @@ export const FreyaLanguage = LRLanguage.define({
   }
 })
 
-export function Freya() {
+export function Index() {
   return new LanguageSupport(FreyaLanguage)
 }
