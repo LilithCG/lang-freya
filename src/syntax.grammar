@@ -3,13 +3,13 @@
 @skip { space | LineComment }
 
 expression {
-  keyword |
+  Identifier |
   String |
   Application { "{" expression* "}" }
 }
 
 @tokens {
-  keyword {"component"}
+  Identifier { 'component' | 'container' | 'softwareSystem'}
 
   String { '"' (!["\\] | "\\" _)* '"' }
 
