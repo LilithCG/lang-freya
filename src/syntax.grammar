@@ -9,7 +9,8 @@ expression {
 }
 
 @tokens {
-  Identifier { 'component' | 'container' | 'softwareSystem'}
+  Identifier { 'component' | 'container' | 'softwareSystem' | 'model' | 'workspace' | '!identifiers hierarchical' | 'properties' |
+  'person' | 'views' | 'systemcontext' | 'systemLandscape' | 'styles' | 'element' | 'relationship' | 'color' | 'background' | 'shape' | '!constant'}
 
   String { '"' (!["\\] | "\\" _)* '"' }
 
