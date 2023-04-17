@@ -5,6 +5,8 @@
 expression {
   Identifier |
   String |
+  VariableName |
+  Operator |
   Application { "{" expression* "}" }
 }
 
@@ -15,6 +17,9 @@ expression {
   String { '"' (!["\\] | "\\" _)* '"' }
 
   LineComment { "#" ![\n]* }
+
+  VariableName { $[a-zA-Z_\-0-9]+ " ="  }
+  Operator {"->"}
 
   space { $[ \t\n\r]+ }
 
