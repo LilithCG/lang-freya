@@ -7,16 +7,28 @@ expression {
   String |
   VariableName |
   Operator |
+  Keyword |
   Application { "{" expression* "}" }
 }
 
 @tokens {
-  Identifier { 'component' | 'container' | 'softwareSystem' | 'model' | 'workspace' | '!identifiers hierarchical' | 'properties' |
+  Identifier { $[a-zA-Z0-9_.$]+ }
+
+  String { '"' char* '"' }
+  char { $[\u{20}\u{21}\u{23}-\u{5b}\u{5d}-\u{10ffff}] | "\\" esc }
+  esc  { $["\\\/bfnrt] | "u" hex hex hex hex }
+  hex  { $[0-9a-fA-F] }
+
+  Keyword { 'component' | 'container' | 'softwareSystem' | 'model' | 'workspace' | '!identifiers hierarchical' | 'properties' |
   'person' | 'views' | 'systemcontext' | 'systemLandscape' | 'styles' | 'element' | 'relationship' | 'color' | 'background' | 'shape' | '!constant'}
 
-  String { '"' (!["\\] | "\\" _)* '"' }
-
   LineComment { "#" ![\n]* }
+
+  stringLiteralStart { "L\"" | "u\"" | "U\"" | "u8\"" | "\"" }
+
+  stringLiteralEnd { "\"" }
+
+  stringLiteralContent { ![\\\n"]+ }
 
   VariableName { $[a-zA-Z_\-0-9]+ " ="  }
   Operator {"->"}
@@ -24,6 +36,11 @@ expression {
   space { $[ \t\n\r]+ }
 
   "{" "}"
+  @precedence { VariableName, Identifier }
+  @precedence {Keyword, Identifier}
+  @precedence {String, Identifier}
+  @precedence {String, Keyword}
+  @precedence {String, VariableName}
 }
 
 @detectDelim
